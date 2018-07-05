@@ -1,0 +1,27 @@
+FROM ubuntu:xenial
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM xterm
+ENV USER test_user
+
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    make \
+    gcc \
+    g++ \
+    locales \
+    wget \
+    software-properties-common \
+    sudo 
+
+RUN adduser --disabled-password --gecos '' ${USER} 
+RUN adduser ${USER} sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN mkdir -p /home/${USER}
+RUN chown -R ${USER}:${USER} /home/${USER}
+
+USER ${USER} 
+ADD script_setup.sh script_setup.sh
+RUN bash -c "cd && /script_setup.sh"
+

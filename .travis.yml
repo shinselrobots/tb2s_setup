@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+script:
+  - docker build -t ros_test_xenial -f dockerfile.xenial .
