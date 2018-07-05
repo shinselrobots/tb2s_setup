@@ -2,5 +2,5 @@
 - git: {local-name: robot_general, uri: 'https://github.com/shinselrobots/robot_general.git'}
 - git: {local-name: robot_speech, uri: 'https://github.com/shinselrobots/robot_speech.git'}
 - git: {local-name: robot_behavior, uri: 'https://github.com/shinselrobots/robot_behavior.git'}
-- git: {local-name: rplidar_ros, uri: 'https://github.com/shinselrobots/rplidar_ros.git'}
-- git: {local-name: realsense_ros, uri: 'https://github.com/shinselrobots/realsense_samples_ros.git'}
+- git: {local-name: rplidar_ros, uri: 'https://github.com/shinselrobots/rplidar_ros.git', version: 'master_shinselrobots'}
+- git: {local-name: realsense_ros, uri: 'https://github.com/shinselrobots/realsense_samples_ros.git', version: 'kinetic-devel-shinselrobots'}
