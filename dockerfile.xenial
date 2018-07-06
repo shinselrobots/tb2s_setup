@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV TERM xterm
+ENV TERM linux
 ENV USER test_user
 
 RUN apt-get update && apt-get install -y \
@@ -22,6 +22,7 @@ RUN mkdir -p /home/${USER}
 RUN chown -R ${USER}:${USER} /home/${USER}
 
 USER ${USER} 
-ADD script_setup.sh script_setup.sh
-RUN bash -c "cd && /script_setup.sh"
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM linux
+ADD script_setup.sh /home/${USER}/script_setup.sh
 

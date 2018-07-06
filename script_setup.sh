@@ -2,15 +2,10 @@
 #
 # Run script as root, unless permissions are dropped elsewhere.  This allows root password to be provided once at start of script
 #
-   
-if [ ! -z "$USER" ]
-then
-  echo "ERROR: USER variable not set"
-#  exit -1
-fi
-export USER=test_user
-export _DEFAULT_USER="-u $USER"
 
+set -e
+
+export _DEFAULT_USER="-u $USER"
 
 sudo -E bash <<"EOF"
 export NPROCS=`grep -c ^processor /proc/cpuinfo`
@@ -33,7 +28,7 @@ else
   apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
   sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
   apt-get update
-  apt-get -y install ssh git ros-kinetic-ros-base python-wstool python-rosdep 
+  apt-get -y install ssh git ros-kinetic-catkin python-wstool python-rosdep 
   rosdep init
 
 sudo -E $_DEFAULT_USER bash <<"EOF2"
@@ -80,12 +75,6 @@ init_install
 install_ros
 install_speech
 install_source
-
-echo "Please complete the following manual steps:"
-echo "  $ source ~/.bashrc"
-echo "  $ rosrun kobuki_ftdi create_udev_rules"
-echo "  $ sudo cp catkin_robot/src/tb2s/tb2s_pantilt/udev/* /etc/udev/rules.d"
-echo "     then reboot your device."
 
 ldconfig
 

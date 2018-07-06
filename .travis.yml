@@ -7,5 +7,8 @@ branches:
   only:
     - master
 
-script:
+before_install:
   - docker build -t ros_test_xenial -f dockerfile.xenial .
+
+script: 
+  - docker run --rm -t ros_test_xenial /bin/bash -c "cd && ./script_setup.sh"
