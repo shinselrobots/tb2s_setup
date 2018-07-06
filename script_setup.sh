@@ -19,19 +19,12 @@ else
   sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
   sudo apt-get update
-  sudo apt-get -y install ros-kinetic-catkin python-wstool python-rosdep 
+  sudo apt-get -y install ros-kinetic-catkin python-wstool python-rosdep build-essential
   sudo rosdep init
   rosdep update
   echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 fi
 }
-
-
-
-function install_speech {
-  sudo apt-get -y install libatlas3-base python-pyaudio
-}
-
 
 function install_source {
   cd
@@ -56,5 +49,4 @@ function install_source {
 cd
 init_install
 install_ros
-install_speech
 install_source

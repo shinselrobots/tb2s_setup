@@ -1,28 +1,14 @@
 FROM ubuntu:xenial
-
+ENV USER test_user
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
-ENV USER test_user
-
-RUN apt-get update && apt-get install -y \
-    git \
-    build-essential \
-    make \
-    gcc \
-    g++ \
-    locales \
-    wget \
-    software-properties-common \
-    sudo 
-
+RUN apt-get update && apt-get install -y locales wget software-properties-common apt-utils sudo
 RUN adduser --disabled-password --gecos '' ${USER} 
 RUN adduser ${USER} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN mkdir -p /home/${USER}
 RUN chown -R ${USER}:${USER} /home/${USER}
-
 RUN echo "DEBIAN_FRONTEND=\"noninteractive\"" >> /etc/environment
 RUN echo "TERM=\"linux\"" >> /etc/environment
-
 ADD script_setup.sh /home/${USER}/script_setup.sh
 USER ${USER}
