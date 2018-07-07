@@ -50,3 +50,9 @@ cd
 init_install
 install_ros
 install_source
+
+# After everything has installed correctly with dependencies, install 
+# the remaining ROS full desktop environment
+sudo apt-install ros-kinetic-desktop-full
+
+echo "Don't forget to run 'source ~./bashrc' to load ROS environment"
